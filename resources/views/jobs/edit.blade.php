@@ -1,21 +1,15 @@
 <x-layout>
 
     <x-slot:heading>
-        Create Job
+        Edit Job : {{ $job->title }}
     </x-slot:heading>
 
-    <form method="POST" action="/jobs">
+    <form method="POST" action="/jobs/{{ $job->id }}">
         @csrf
+        @method('PATCH')
 
         <div class="space-y-8">
             <div class="border-b border-gray-200 pb-8">
-                <h2 class="text-lg font-semibold text-gray-900">
-                    Job Details
-                </h2>
-
-                <p class="mt-1 text-sm text-gray-600">
-                    Fill in the details to create a new job listing.
-                </p>
 
                 <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-6">
 
@@ -30,7 +24,9 @@
                                 name="title"
                                 type="text"
                                 placeholder="e.g. Senior Laravel Developer"
-                                class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required
+                                class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                                value = "{{ $job->title }}"
+                                required
                             >
                         </div>
                         @error('title')
@@ -49,7 +45,9 @@
                                 name="salary"
                                 type="text"
                                 placeholder="₹50,000/month"
-                                class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required
+                                class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                                value="{{ $job->salary }}"
+                                required
                             >
                         </div>
                         @error('salary') 
@@ -57,33 +55,42 @@
                         @enderror
                     </div>
                 </div>
-                {{-- <div class="mt-10">                    
-                    @if ($errors -> any())
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li class="text-red-500">{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div> --}}
             </div>
 
-            <div class="flex items-center justify-end gap-x-4">
-                <button
-                    type="button"
-                    class="text-sm font-semibold text-gray-700 hover:text-gray-900"
-                >
-                    Cancel
-                </button>
+          <div class="flex items-center justify-between">
+                <!-- Delete Button -->
+                    <button
+                        type="submit"
+                        form="delete-form"
+                        class="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        onclick="return confirm('Are you sure you want to delete this job?')"
+                    >
+                        Delete
+                    </button>
 
-                <button
-                    type="submit"
-                    class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                    Save Job
-                </button>
+                <!-- Cancel & Update -->
+                <div class="flex items-center gap-x-4">
+                    <a
+                        href="/jobs/{{ $job->id }}"
+                        class="text-sm font-semibold text-gray-700 hover:text-gray-900"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    >
+                        Update
+                    </button>
+                </div>
             </div>
         </div>
+    </form>
+
+    <form action="/jobs/{{ $job->id }}" method="POST" id="delete-form" class="hidden">
+                    @csrf
+                    @method('DELETE')
     </form>
 
 </x-layout>
