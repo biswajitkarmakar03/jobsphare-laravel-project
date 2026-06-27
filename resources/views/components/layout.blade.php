@@ -34,7 +34,6 @@
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                     <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                     <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
-                    <x-nav-link href="/services" :active="request()->is('services')">Service</x-nav-link>
                     <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
                 </div>
                 </div>
@@ -47,7 +46,6 @@
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
             <a href="/" aria-current="page" class="{{ request()->is('/') ? "bg-gray-900 text-white" :  "text-gray-300 hover:bg-white/5 hover:text-white" }} ">Home</a>
             <a href="/about" class="{{ request()->is('about') ? "bg-gray-900 text-white" :  "text-gray-300 hover:bg-white/5 hover:text-white" }} ">About</a>
-            <a href="/services" class=" {{ request()->is('services') ? "bg-gray-900 text-white" :  "text-gray-300 hover:bg-white/5 hover:text-white" }} ">Service</a>
             <a href="/contact" class=" {{ request()->is('contact') ? "bg-gray-900 text-white" :  "text-gray-300 hover:bg-white/5 hover:text-white" }} ">Contact</a>
             </div>
         </el-disclosure>
