@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +15,7 @@ Route::controller(JobController::class)->group(function(){
     Route::patch('/jobs/{job}', 'update');
     Route::delete('/jobs/{job}', 'destry');
 });
+
+Route::get('/register', [RegisteredUserController::class, 'create']); 
 
 Route::view('/contact', 'contact');
