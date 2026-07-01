@@ -13,11 +13,11 @@
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-6">
 
                     <x-form-field>
-                        <x-form-label for="full_name">Full Name</x-form-label>
+                        <x-form-label for="name">Full Name</x-form-label>
 
-                        <x-form-input id="full_name" name="full_name"  placeholder="e.g. Virat Kohli" required />
+                        <x-form-input id="name" name="name"  placeholder="e.g. Virat Kohli" required />
 
-                        <x-form-error name="full_name" />
+                        <x-form-error name="name" />
                     
                     </x-form-field>
 

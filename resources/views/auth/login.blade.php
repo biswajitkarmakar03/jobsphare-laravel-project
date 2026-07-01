@@ -4,7 +4,7 @@
         Login
     </x-slot:heading>
 
-    <form method="POST" action="/jobs">
+    <form method="POST" action="/login">
         @csrf
 
         <div class="space-y-8">
@@ -15,7 +15,7 @@
                     <x-form-field>
                         <x-form-label for="email">Email</x-form-label>
 
-                        <x-form-input id="email" name="email"  type="email" placeholder="e.g. viratkohli18@gmail.com" required />
+                        <x-form-input id="email" name="email"  type="email" :value="old('email')" placeholder="e.g. viratkohli18@gmail.com" required />
 
                         <x-form-error name="email" />
                     
